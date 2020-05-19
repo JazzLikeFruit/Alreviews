@@ -32,7 +32,7 @@ The first page of the application is the homepage. On this page the user will be
 search for an album by filling in the textbox and pressing the seach button. The user can also
 go to the user profile by pressing the icon in the navbar. 
 
-![homepage](doc/1.jpg)
+![homepage](doc/1.JPG)
 ---
 
 ### Search result
