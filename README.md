@@ -40,7 +40,7 @@ The second page displays the search result from the user's query. This page load
 artist and basic information of every album related to the user query. the user can select an album 
 to review by pressing the review button. 
 
-![search result](doc/2.jpg)
+![search result](doc/2.JPG)
 ---
 
 ### Album page 
@@ -48,12 +48,12 @@ This page firstly displays basic information about the selected ablum. Thereafte
 with the tracklist of set album and a textbox inwhich the user can rate a song. This is followed by
 a textbox where the user can leave their thoughts about the album. 
 
-![Album page](doc/3.jpg)
+![Album page](doc/3.JPG)
 ---
 
 ### User page
 
 On this page the user can see their reviewed album.
 
-![User profile](doc/4.jpg)
+![User profile](doc/4.JPG)
 ---
