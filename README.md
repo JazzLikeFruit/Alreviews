@@ -1,4 +1,4 @@
-# Alreviews
+# Alreview
 
 This is a flask application that implements a rating system for albums. The application uses the AudioDB api to gather information
 about albums by an sertain artist and gives the user questions with which every song and the entire album as a whole is rated.
@@ -27,6 +27,33 @@ To implement this application I will be using:
 
 ## Details and sketches
 
-This part describes different ways that your application will be used, with all relevant screens sketched out
+### Homepage
+The first page of the application is the homepage. On this page the user will be able to 
+search for an album by filling in the textbox and pressing the seach button. The user can also
+go to the user profile by pressing the icon in the navbar. 
 
+![homepage](doc/1.jpg)
+---
 
+### Search result
+The second page displays the search result from the user's query. This page loads the name, 
+artist and basic information of every album related to the user query. the user can select an album 
+to review by pressing the review button. 
+
+![search result](doc/2.jpg)
+---
+
+### Album page 
+This page firstly displays basic information about the selected ablum. Thereafter the user is presented
+with the tracklist of set album and a textbox inwhich the user can rate a song. This is followed by
+a textbox where the user can leave their thoughts about the album. 
+
+![Album page](doc/3.jpg)
+---
+
+### User page
+
+On this page the user can see their reviewed album.
+
+![User profile](doc/4.jpg)
+---
