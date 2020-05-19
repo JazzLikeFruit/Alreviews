@@ -57,3 +57,9 @@ On this page the user can see their reviewed album.
 
 ![User profile](doc/4.JPG)
 ---
+
+## Hardest parts
+The hardest parts to implement will be: 
+- Perfoming the API requests
+- calculating the ratings
+- Making the UI 
