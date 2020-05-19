@@ -1,4 +1,4 @@
-# Alreview
+# Alreviews
 
 This is a flask application that implements a rating system for albums. The application uses the AudioDB api to gather information
 about albums by an sertain artist and gives the user questions with which every song and the entire album as a whole is rated.
