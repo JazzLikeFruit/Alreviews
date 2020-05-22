@@ -9,13 +9,13 @@ After listening to an album most of the times my friends ask me what I think of 
 
 ## Solution description
 
-With the app I will be able to look up a sertain album by an artist, answer questions about what I thought about a song and the entire album and this will generate a grade and this will be added to a list of albums I've graded before.
+With the app I will be able to look up a sertain album by an artist, listen to the songs, answer questions about what I thought about a song and the entire album and this will generate a grade and this will be added to a list of albums I've graded before.
 
 ## Data sources
 
 The data sources that will be used to gather the needed information are:
 
-- The AudioDB API: to gather information about an album (https://www.theaudiodb.com/api_guide.php?ref=apilist.fun)
+- The spotify API: this api will be used to gather information about an album and play the songs from set album. 
 
 ## External components
 
@@ -24,6 +24,7 @@ To implement this application I will be using:
 - Flask: to create the server
 - SQLalchemy: to create the database
 - Bootstrap/CSS: to style the application
+- Spotipy: This library will be used to access the music data on the Spotify platform
 
 ## Details and sketches
 
@@ -58,6 +59,17 @@ On this page the user can see their reviewed album.
 ![User profile](doc/4.JPG)
 ---
 
+## Similar applications
+The application that I found that lightly resembles Alreviews is: 
+
+Rateyourmusic.com: On this application the average rating of an sertain album by an user determines the 
+total score displayed on the website. To do this users are devided in different ranks determined by their traffic 
+on the website. This rank determines the weight of a review by an user. 
+
+Alreviews will in the contrary be a site on which users can determine their personal oppinion on an album and compare this 
+to their oppinions of other albums.  
+
+---
 ## Hardest parts
 The hardest parts to implement will be: 
 - Perfoming the API requests
