@@ -69,7 +69,7 @@ on the website. This rank determines the weight of a review by an user.
 Alreviews will in the contrary be a site on which users can determine their personal oppinion on an album and compare this 
 to their oppinions of other albums.  
 
----
+
 ## Hardest parts
 The hardest parts to implement will be: 
 - Perfoming the API requests
