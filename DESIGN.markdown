@@ -89,3 +89,22 @@ The following diagram shows how the database will be designed.
 ## Detailed list
 
 the following list contains a detailed view of the API's and frameworks that will be used.
+
+### Spotify Platform
+
+Spotify API:
+This API is used to gather information about an album. for this the following is needed:
+
+- Creation: To use the spotify api the app has to be registered.
+- Autorization: this is needed to gain access to the data. Alreviews will use the Autorization flow where the user autorized the use of their account once and this is used untill the user logs back out.
+- API requests: This is used to load the information. To do this the spotiy library will be used.
+
+### Spotipy library
+
+This is a Python library for the Spotify Web API. With Spotipy you get full access to all of the music data provided by the Spotify platform. This liberary will be used to make the API request to the spotify platform.
+
+### Web Playback SDK
+
+This is a client-side JavaScript library which allows the creation of a new player in Spotify Connect and playing any audio track from Spotify in the browser via Encrypted Media Extensions.
+
+To create this the access token that is returned after the user logs in is needed.
