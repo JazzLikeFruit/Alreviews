@@ -15,12 +15,14 @@ With the app I will be able to look up a sertain album by an artist, listen to t
 
 The data sources that will be used to gather the needed information are:
 
-- The spotify API: this api will be used to gather information about an album and play the songs from set album. 
+- Spotify: Spotify (Swedish media services provider and music streaming service) will be used to gather all the infomatioon about the albums.
 
 ## External components
 
 To implement this application I will be using:
 
+- Spotipy library: This will be used to pull the infomation form the spotify API
+- Spotify Web Playback SDK: This will be used to create a web player and play selected albums
 - Flask: to create the server
 - SQLalchemy: to create the database
 - Bootstrap/CSS: to style the application
@@ -72,6 +74,7 @@ to their oppinions of other albums.
 
 ## Hardest parts
 The hardest parts to implement will be: 
-- Perfoming the API requests
+- Perfoming the API requests to spotify
+- Creating the webplayer
 - calculating the ratings
 - Making the UI 
