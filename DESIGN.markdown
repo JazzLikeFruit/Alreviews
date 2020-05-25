@@ -6,12 +6,13 @@ This document explains the problem in a more technical fashion.
 
 The features users of this app will be able to use are:
 
-- Log into spotify account
-- Search for albums
-- Read information about an album
-- Listen to the album
-- score each song if an album
-- review rated albums
+1. Log into spotify account
+2. Search for albums
+3. Load results from user query
+4. Read information about an album
+5. Listen to the album
+6. score each song if an album
+7. review rated albums
 
 ## User interface
 
@@ -19,29 +20,71 @@ These are the following screens that will be available to make use of the featur
 
 ### Login screen
 
-## ![homepage](doc/login.PNG)
+This page will implement the the first feature where the user logs into their spotify account.
+
+On execution, the user is redirected to a page where the requested information is presented. the user has to log into their spotify account. After this they will be rederected to the homepage.
+
+This is used to gain permission from the user to create a Spotify acces token. This token is used to make API requests and create the Spotify player.
+
+![Login](doc/login.PNG)
+
+Uses:
+
+- Spotipy library
+- Spotify API
+
+Reference: https://developer.spotify.com/documentation/general/guides/authorization-guide/
 
 ### Homepage
 
-## ![homepage](doc/Search.PNG)
+On this page the user can search for an album by filling the textbox and pressing the search icon. This implements the second feature in the features list.
+
+By pressing the button a API request is sent to gather all albums where the user query appears.
+
+![Homepage](doc/Search.PNG)
+
+Uses:
+
+- Spotipy library
 
 ### Search result
 
-## ![homepage](doc/result.PNG)
+On this page the search results gathered from the user query are displayed. this implements the third feature in the features list.
+
+![Search](doc/result.PNG)
+
+Uses:
+
+- Spotipy library
 
 ### Album page
 
-## ![homepage](doc/album.PNG)
+This page implements the fourth, fifth and sixth feature from the list. On this page the user firstly sees infomation about an album. By pressing the play button behind a song in the tracklist the play is loaded and the user can listen to set song.
+
+After listening and rating each song the user can press the rate button whereafter the user will be rederected to the User page.
+
+![Album](doc/album.PNG)
+
+Uses:
+
+- Spotipy library
+- Spotify Web Playback SDK
+
+Reference: https://developer.spotify.com/documentation/web-playback-sdk/
 
 ### User page
 
-![homepage](doc/user.PNG)
+On this page the user can view their reviewed album hereby implementing the seventh feature.
+
+This is done by loading the information from the database.
+
+![User](doc/user.PNG)
 
 ## Database
 
 The following diagram shows how the database will be designed.
 
-![homepage](doc/classdiagram.PNG)
+![Database](doc/classdiagram.PNG)
 
 ## Detailed list
 
