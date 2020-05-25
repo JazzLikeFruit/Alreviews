@@ -108,3 +108,7 @@ This is a Python library for the Spotify Web API. With Spotipy you get full acce
 This is a client-side JavaScript library which allows the creation of a new player in Spotify Connect and playing any audio track from Spotify in the browser via Encrypted Media Extensions.
 
 To create this the access token that is returned after the user logs in is needed.
+
+### Flask
+
+Flask will be used to create the server for this application. Here the API requests to the spotify application will be made and data will be loaded out of and into the database.
