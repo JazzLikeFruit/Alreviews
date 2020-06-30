@@ -44,7 +44,7 @@
 .cont {
 	display: grid;
 	grid-template-columns: 20% 22% 28% 30%;
-	grid-template-rows: 15% 20% 25% 12.5% 15%;
+	grid-template-rows: 15% 20% 25% 15% 15%;
 	grid-gap: 0cm;
 	width: 100vw;
 	height: 100vh;
@@ -76,4 +76,10 @@
 	grid-row: 3;
 	font-size: 20px;
 	font-weight: Thin;
+}
+
+.item-5 {
+	grid-column: 2/4;
+	grid-row: 3;
+	justify-self: center;
 }

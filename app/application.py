@@ -30,3 +30,13 @@ Migrate(app, db)
 @app.route("/")
 def index():
     return render_template("index.html")
+
+
+@app.route("/search")
+def search():
+    return render_template("search.html")
+
+
+@app.route("/result")
+def result():
+    return render_template("result.html")

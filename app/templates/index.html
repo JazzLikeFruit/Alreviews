@@ -4,7 +4,7 @@ content %}
 	<div class="item item-1">
 		<img
 			id="image123"
-			src="https://studybreaks.com/wp-content/uploads/2018/04/1_F0u0WB6EslNKYI5P4H9U1A.jpeg"
+			src="{{ url_for('static', filename='pictures/hompageimage.jpeg') }}"
 			alt="albums"
 		/>
 	</div>
@@ -12,6 +12,7 @@ content %}
 		<button type="submit" class="btn btn-primary btn-lg">
 			Search for album
 		</button>
+		<p>Powered by Spotify</p>
 	</div>
 	<div class="item item-3">
 		Listen, rate albums and share them with your friends!

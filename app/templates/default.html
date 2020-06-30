@@ -61,11 +61,13 @@
 								><span class="navcol">About</span></a
 							>
 						</li>
+						{% if request.path !="/"%}
 						<li class="nav-item active">
 							<a class="nav-link" href="{{ url_for('index') }}"
 								><span class="navcol">Profile</span></a
 							>
 						</li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>
