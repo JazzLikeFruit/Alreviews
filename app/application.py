@@ -6,6 +6,8 @@ from sqlalchemy import and_
 from flask_migrate import Migrate
 from .models import *
 from .spotify.startup import *
+import spotipy
+
 
 # Configure Flask appz
 app = Flask(__name__)
@@ -46,13 +48,17 @@ def callback():
 
 @app.route("/search")
 def search():
-    print(getAccessToken())
     return render_template("search.html")
 
 
-@app.route("/result")
+@app.route("/result", methods=["GET", "POST"])
 def result():
-    return render_template("result.html")
+    token = getAccessToken()
+    spotify = spotipy.Spotify(auth=token[0])
+    results = spotify.search(q=request.form.get(
+        "userinput"), type="album", market="NL")
+    
+    return render_template("result.html", results=results)
 
 
 @app.route("/album")
