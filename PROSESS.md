@@ -33,4 +33,10 @@ Date/Choice made
 <td> Give the website a more modern look and feel</td>
 <td> Made the website look better with colors that work well together</td>
 </tr>
+</tr>
+<td>03/7</td>
+<td>finishing the basic functionalities first</td>
+<td> Having the core of the website done as fast as possible </td>
+<td> After having the core done the adding of extras can be done as fast as possible</td>
+</tr>
 </table>
