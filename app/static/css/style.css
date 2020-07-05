@@ -85,6 +85,7 @@
 }
 .resultlist {
 	box-sizing: border-box;
+	display: inline;
 }
 .list a {
 	text-decoration: none;
@@ -114,6 +115,7 @@
 
 .list li:hover {
 	background-color: #eee;
+	cursor: pointer;
 }
 
 .albumimage {
@@ -141,6 +143,12 @@
 	margin-top: 0.5cm;
 }
 
-.albumid {
-	display: None;
+#titlediv {
+	margin-top: 5cm;
+	margin: auto;
+	left: 35%;
+}
+
+#albumrating {
+	display: none;
 }

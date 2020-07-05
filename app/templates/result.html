@@ -1,34 +1,52 @@
 {% extends "default.html" %} {% block title %}Results{% endblock %} {% block
 content %}
-<div class="container resultlist">
-	{{albumdict}}
-	<div class="row">
-		<div class="col">
-			<h2>Search results</h2>
+<div class="container">
+	<div class="resultlist">
+		<div class="row">
+			<div id="titlediv" class="col-12">
+				<h1>Search results</h1>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col">
-			<ul class="list">
-				{% for result in result_list%}
-				<a href="{{ url_for('album') }}" class="listitem"
-					><li>
-						<div class="albumid" name="album-id">{{result['id']}}</div>
-						<div class="listcontent">
-							<div class="albumimage">
-								<img src="{{result['image']}}" alt="{{result['name']}}" />
-							</div>
-							<div class="listtext">
-								<div class="albumname">{{result["name"]}}</div>
-								<div class="artistname">
-									{%for artist in result["artist"]%}{{artist}}{% endfor %}
+		<div class="row">
+			<div class="col">
+				<ul class="list">
+					{% for result in result_list%}
+					<a class="listitem" data-itemid="{{result['id']}}"
+						><li>
+							<div class="listcontent">
+								<div class="albumimage">
+									<img src="{{result['image']}}" alt="{{result['name']}}" />
+								</div>
+								<div class="listtext">
+									<div class="albumname">{{result["name"]}}</div>
+									<div class="artistname">
+										{{result["artist"]}}
+									</div>
 								</div>
 							</div>
-						</div>
-					</li></a
-				>
-				{% endfor %}
-			</ul>
+						</li></a
+					>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="albumrating" class="container">
+		<div class="row">
+			<div class="col-3" id="albumimage"></div>
+			<div class="col-9" id="albumtitle"></div>
+			<div class="col-12">
+				<p>
+					Please listen to and rate all the songs with a number from 1 to 5
+				</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col"><p>Track list</p></div>
+		</div>
+		<div class="row">
+			<div class="col"><p>Rate album</p></div>
 		</div>
 	</div>
 </div>

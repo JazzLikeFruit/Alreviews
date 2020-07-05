@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, url_for, session, redirect
+from flask import Flask, render_template, request, url_for, session, redirect, jsonify
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
 from sqlalchemy import and_
@@ -28,6 +28,14 @@ Session(app)
 # Configure migrationsea
 Migrate(app, db)
 
+
+def get_artists(dict):
+    list = []
+    for item in dict["artists"]:
+        list.append(item['name'])
+    return list
+
+
 # The index page of the website
 @app.route("/")
 def index():
@@ -54,18 +62,17 @@ def search():
 @app.route("/result", methods=["GET", "POST"])
 def result():
 
-    token = getAccessToken()
-    spotify = spotipy.Spotify(auth=token[0])
-    results = spotify.search(q=request.form.get(
+    session['spotify'] = spotipy.Spotify(getAccessToken())
+    results = session['spotify'].search(q=request.form.get(
         "userinput"), type="album", market="NL")
 
     result_list = []
     for album in results["albums"]["items"]:
         albumdict = {}
         artistlist = []
-        for artist in album['artists']:
-            artistlist.append(artist['name'])
-        albumdict["artist"] = artistlist
+
+        albumdict["artist"] = str(get_artists(album)).strip('[]')
+        print(albumdict["artist"])
         albumdict["name"] = album["name"]
         albumdict["id"] = album["id"]
         albumdict["image"] = album["images"][2]["url"]
@@ -73,10 +80,33 @@ def result():
     return render_template("result.html", result_list=result_list)
 
 
-@app.route("/album")
+@app.route("/album", methods=["POST"])
 def album():
-    print(request.form.get("album-id"))
-    return render_template("album.html")
+    tracks = []
+    artistlist = []
+    albumdict = {}
+    album = session['spotify'].album(request.form.get("itemid"))
+    albumdict["name"] = album["name"]
+    albumdict["date"] = album["release_date"]
+    albumdict["total_tracks"] = album["total_tracks"]
+    albumdict["images"] = album["images"][1]["url"]
+    albumdict["id"] = album["id"]
+
+    albumdict["artist"] = get_artists(album)
+
+    for track in album["tracks"]["items"]:
+        trackdict = {}
+        trackdict["name"] = track["name"]
+        trackdict["uri"] = track["uri"]
+        tracks.append(trackdict)
+    albumdict["tracks"] = tracks
+    print(albumdict)
+    return albumdict
+
+
+@app.route("/rating")
+def rating():
+    return render_template("search.html")
 
 
 @app.route("/profile")
