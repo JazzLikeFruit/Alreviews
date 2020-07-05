@@ -83,3 +83,64 @@
 	grid-row: 3;
 	justify-self: center;
 }
+.resultlist {
+	box-sizing: border-box;
+}
+.list a {
+	text-decoration: none;
+}
+.list {
+	list-style-type: none;
+	padding: 0;
+	margin-top: 3cm;
+	margin-bottom: 1cm;
+	vertical-align: center;
+}
+
+.list li {
+	border: 1px solid #ddd;
+	margin-top: -1px; /* Prevent double borders */
+	background-color: #f6f6f6;
+	padding: 12px;
+	text-decoration: none;
+	font-size: 18px;
+	color: black;
+	display: block;
+	position: relative;
+	height: 150px;
+	width: 80%;
+	margin: auto;
+}
+
+.list li:hover {
+	background-color: #eee;
+}
+
+.albumimage {
+	position: absolute;
+	left: 5%;
+}
+
+.albumname {
+	position: absolute;
+	left: 25%;
+	text-align: left;
+}
+
+.artistname {
+	position: absolute;
+	text-align: right;
+	right: 10%;
+}
+
+.listcontent {
+	margin-top: 1cm;
+}
+
+.listtext {
+	margin-top: 0.5cm;
+}
+
+.albumid {
+	display: None;
+}

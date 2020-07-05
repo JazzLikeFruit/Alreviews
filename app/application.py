@@ -53,16 +53,29 @@ def search():
 
 @app.route("/result", methods=["GET", "POST"])
 def result():
+
     token = getAccessToken()
     spotify = spotipy.Spotify(auth=token[0])
     results = spotify.search(q=request.form.get(
         "userinput"), type="album", market="NL")
-    
-    return render_template("result.html", results=results)
+
+    result_list = []
+    for album in results["albums"]["items"]:
+        albumdict = {}
+        artistlist = []
+        for artist in album['artists']:
+            artistlist.append(artist['name'])
+        albumdict["artist"] = artistlist
+        albumdict["name"] = album["name"]
+        albumdict["id"] = album["id"]
+        albumdict["image"] = album["images"][2]["url"]
+        result_list.append(albumdict)
+    return render_template("result.html", result_list=result_list)
 
 
 @app.route("/album")
 def album():
+    print(request.form.get("album-id"))
     return render_template("album.html")
 
 
