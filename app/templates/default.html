@@ -8,6 +8,7 @@
 			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 			crossorigin="anonymous"
 		/>
+		<script src="https://sdk.scdn.co/spotify-player.js"></script>
 		<script
 			src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -78,14 +79,50 @@
 			{% block content %}{% endblock %}
 		</div>
 		{% block footer %}
-		<footer
-			id="sticky-footer"
-			class="py-4 text-black-50"
-			style="background-color: #3c3b3a;"
-		>
+		<footer id="sticky-footer" class="py-4 text-black-50">
 			<div class="container text-center">
 				<small>Made by Shewen Davelaar</small>
 			</div>
+		</footer>
+
+		<footer id="web-player" class="py-4 text-black-50">
+			<div id="player" class="container-fluid">
+				<div class="row">
+					<div class="col-2">
+						<img id="songimage" src="" alt="songimage" />
+					</div>
+					<div id="songinfo" class="col-6">
+						<p id="player_songname"></p>
+						<p id="player_songartist"></p>
+					</div>
+					<div id="play" class="col-2">
+						<img
+							id="play_image"
+							src="{{ url_for('static', filename='pictures/play_button.png')
+						}}"
+							alt="play"
+						/>
+					</div>
+					<div id="pause" class="col-2">
+						<img
+							id="pause_image"
+							src="{{ url_for('static',
+						filename='pictures/pause_button.png') }}"
+							alt="pause"
+						/>
+					</div>
+					<div id="spotify" class="col-2">
+						<img
+							id="spotify_image"
+							src="{{ url_for('static', filename='pictures/spotify.png')
+						}}"
+							alt="spotify logo"
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div></div>
 		</footer>
 		{% endblock %}
 	</body>

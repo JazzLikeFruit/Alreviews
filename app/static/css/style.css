@@ -2,7 +2,19 @@
 	position: absolute;
 	bottom: 0;
 	width: 100%;
-	height: 3.5rem;
+	height: 3cm;
+	overflow: hidden;
+	background-color: #5e5c5a;
+}
+
+#web-player {
+	position: fixed;
+	bottom: 0;
+	left: 15%;
+	right: 15%;
+	height: 2.5cm;
+	background-color: #5e5c5a;
+	display: none;
 	overflow: hidden;
 }
 
@@ -29,6 +41,7 @@
 	font-weight: bold;
 }
 #content-wrap {
+	height: 100%;
 	padding-top: 2cm;
 	padding-bottom: 1cm; /* Footer height */
 }
@@ -85,11 +98,8 @@
 }
 .resultlist {
 	box-sizing: border-box;
-	display: inline;
 }
-.list a {
-	text-decoration: none;
-}
+
 .list {
 	list-style-type: none;
 	padding: 0;
@@ -97,7 +107,16 @@
 	margin-bottom: 1cm;
 	vertical-align: center;
 }
-
+.list a {
+	text-decoration: none;
+}
+#login_buttons {
+	background-color: #2368c6;
+}
+#login_buttons a {
+	text-decoration: none;
+	color: #ffffff;
+}
 .list li {
 	border: 1px solid #ddd;
 	margin-top: -1px; /* Prevent double borders */
@@ -108,9 +127,13 @@
 	color: black;
 	display: block;
 	position: relative;
-	height: 150px;
+
 	width: 80%;
 	margin: auto;
+}
+
+.resultlitem {
+	height: 150px;
 }
 
 .list li:hover {
@@ -144,11 +167,58 @@
 }
 
 #titlediv {
-	margin-top: 5cm;
-	margin: auto;
+	margin-top: 1cm;
 	left: 35%;
 }
 
 #albumrating {
 	display: none;
+}
+#albumtracks {
+	margin-top: auto;
+	width: 70%;
+}
+
+#rate_album {
+	font-size: 25px;
+	font-weight: bold;
+	float: right;
+}
+
+#rate_text {
+	margin-top: 1cm;
+}
+
+#result_page {
+	background-color: #f0f4f9;
+}
+
+#track_list {
+	font-size: 25px;
+	font-weight: bold;
+}
+#player {
+	top: auto;
+	height: 2.5cm;
+	color: white;
+}
+
+#songimage {
+	margin: auto;
+}
+
+#player_songname {
+	font-size: 20px;
+	margin-bottom: 0;
+}
+
+#pause {
+	display: none;
+}
+
+#play_image,
+#pause_image,
+#spotify_image {
+	height: 60px;
+	width: 60px;
 }

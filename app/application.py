@@ -33,7 +33,7 @@ def get_artists(dict):
     list = []
     for item in dict["artists"]:
         list.append(item['name'])
-    return list
+    return str(list).strip('[]')
 
 
 # The index page of the website
@@ -71,20 +71,22 @@ def result():
         albumdict = {}
         artistlist = []
 
-        albumdict["artist"] = str(get_artists(album)).strip('[]')
-        print(albumdict["artist"])
+        albumdict["artist"] = get_artists(album)
         albumdict["name"] = album["name"]
         albumdict["id"] = album["id"]
         albumdict["image"] = album["images"][2]["url"]
         result_list.append(albumdict)
+
     return render_template("result.html", result_list=result_list)
 
 
 @app.route("/album", methods=["POST"])
 def album():
+
     tracks = []
     artistlist = []
     albumdict = {}
+
     album = session['spotify'].album(request.form.get("itemid"))
     albumdict["name"] = album["name"]
     albumdict["date"] = album["release_date"]
@@ -97,21 +99,24 @@ def album():
     for track in album["tracks"]["items"]:
         trackdict = {}
         trackdict["name"] = track["name"]
+        trackdict["id"] = track["id"]
         trackdict["uri"] = track["uri"]
         tracks.append(trackdict)
     albumdict["tracks"] = tracks
-    print(albumdict)
     return albumdict
-
-
-@app.route("/rating")
-def rating():
-    return render_template("search.html")
 
 
 @app.route("/profile")
 def profile():
     return render_template("profile.html")
+
+
+@app.route("/get_token", methods=["POST"])
+def get_token():
+    song = session['spotify'].track(request.form.get("songid"))
+    object = jsonify({"token": getAccessToken(
+    ), "name": song["name"], "uri": song["uri"], "artist": song["artists"][0]["name"], "image": song["album"]["images"][2]["url"]})
+    return object
 
 
 @app.route("/about")

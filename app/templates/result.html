@@ -1,6 +1,6 @@
 {% extends "default.html" %} {% block title %}Results{% endblock %} {% block
 content %}
-<div class="container">
+<div id="result_page" class="container">
 	<div class="resultlist">
 		<div class="row">
 			<div id="titlediv" class="col-12">
@@ -12,7 +12,7 @@ content %}
 				<ul class="list">
 					{% for result in result_list%}
 					<a class="listitem" data-itemid="{{result['id']}}"
-						><li>
+						><li class="resultlitem">
 							<div class="listcontent">
 								<div class="albumimage">
 									<img src="{{result['image']}}" alt="{{result['name']}}" />
@@ -34,20 +34,34 @@ content %}
 	<div id="albumrating" class="container">
 		<div class="row">
 			<div class="col-3" id="albumimage"></div>
-			<div class="col-9" id="albumtitle"></div>
+			<div class="col-9">
+				<p id="albumtitle">Album:</p>
+				<p>Artist: <span id="albumartist"></span></p>
+			</div>
+		</div>
+		<div id="rate_text" class="row">
 			<div class="col-12">
 				<p>
-					Please listen to and rate all the songs with a number from 1 to 5
+					<u>
+						Please listen to and rate all the songs with a number from 1 to 5
+					</u>
 				</p>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col"><p>Track list</p></div>
+			<div id="track_list" class="col-12"><p>Track list</p></div>
 		</div>
-		<div class="row">
-			<div class="col"><p>Rate album</p></div>
-		</div>
+		<form action="">
+			<div class="row">
+				<div class="col-12">
+					<ul id="albumtracks" class="list"></ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col"><input type="submit" value="Rate Album" /></div>
+			</div>
+		</form>
 	</div>
 </div>
 
