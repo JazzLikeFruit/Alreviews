@@ -111,14 +111,26 @@ def profile():
     return render_template("profile.html")
 
 
+@app.route("/get_song", methods=["POST"])
+def get_song():
+    song = session['spotify'].track(request.form.get("songid"))
+    object = jsonify({"name": song["name"], "uri": song["uri"], "artist": song["artists"]
+                      [0]["name"], "image": song["album"]["images"][2]["url"]})
+    return object
+
+
 @app.route("/get_token", methods=["POST"])
 def get_token():
-    song = session['spotify'].track(request.form.get("songid"))
-    object = jsonify({"token": getAccessToken(
-    ), "name": song["name"], "uri": song["uri"], "artist": song["artists"][0]["name"], "image": song["album"]["images"][2]["url"]})
-    return object
+    return jsonify({"token": getAccessToken()})
 
 
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+
+@app.route("/play_song")
+def play_song():
+    session['spotify'].start_play(device_id=request.form.get(
+        "player"), context_uri=request.form.get("uri"))
+    return jsonify({"success": True})

@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				document.querySelectorAll(".tracklistitem").forEach((a) => {
 					a.addEventListener("click", () => {
 						const request = new XMLHttpRequest()
-						request.open("POST", "/get_token")
+						request.open("POST", "/get_song")
 						request.onload = () => {
 							const data = JSON.parse(request.responseText)
 							document.querySelector("#songimage").src = data["image"]
@@ -65,8 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
 								data["name"]
 							document.querySelector("#player_songartist").innerHTML =
 								data["artist"]
-
-							player(data["token"][0])
 						}
 
 						const data = new FormData()
@@ -80,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					})
 				})
 			}
+
 			// Add data to send with request
 			const data = new FormData()
 			data.append("itemid", itemid)
@@ -88,64 +87,4 @@ document.addEventListener("DOMContentLoaded", () => {
 			request.send(data)
 		})
 	})
-
-	function player(acces_token) {
-		window.onSpotifyWebPlaybackSDKReady = () => {
-			var player = new Spotify.Player({
-				name: "Web Playback SDK Quick Start Player",
-				getOAuthToken: (cb) => {
-					cb(acces_token)
-				},
-			})
-
-			document.querySelector("#pause").addEventListener("click", () => {
-				player.pause().then(() => {})
-			})
-
-			document.querySelector("#next").addEventListener("click", () => {
-				player.nextTrack().then(() => {
-					console.log("Skipped to next track!")
-				})
-			})
-
-			document.querySelector("#resume").addEventListener("click", () => {
-				player.resume().then(() => {
-					console.log("Resumed!")
-				})
-			})
-
-			// Error handling
-			player.addListener("initialization_error", ({ message }) => {
-				console.error(message)
-			})
-			player.addListener("authentication_error", ({ message }) => {
-				console.error(message)
-			})
-			player.addListener("account_error", ({ message }) => {
-				console.error(message)
-			})
-			player.addListener("playback_error", ({ message }) => {
-				console.error(message)
-			})
-
-			// Ready
-			player.addListener("ready", ({ device_id }) => {
-				console.log("Ready with Device ID", device_id)
-			})
-
-			// Not Ready
-			player.addListener("not_ready", ({ device_id }) => {
-				console.log("Device ID has gone offline", device_id)
-			})
-
-			// Connect to the player!
-			player.connect().then((success) => {
-				if (success) {
-					console.log(
-						"The Web Playback SDK successfully connected to Spotify!"
-					)
-				}
-			})
-		}
-	}
 })

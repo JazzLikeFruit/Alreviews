@@ -171,9 +171,6 @@
 	left: 35%;
 }
 
-#albumrating {
-	display: none;
-}
 #albumtracks {
 	margin-top: auto;
 	width: 70%;
@@ -212,13 +209,16 @@
 	margin-bottom: 0;
 }
 
-#pause {
-	display: none;
-}
-
 #play_image,
 #pause_image,
 #spotify_image {
 	height: 60px;
 	width: 60px;
+}
+
+#token,
+#player_name,
+#pause,
+#albumrating {
+	display: none;
 }

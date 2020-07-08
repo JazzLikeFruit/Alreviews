@@ -58,4 +58,10 @@ Date/Choice made
 <td> The footer will change into the weplayer after clicking on song </td>
 <td> As specified in design.md</td>
 </tr>
+<tr>
+<td>08/7</td>
+<td>Async JS</td>
+<td> Today I fased an issue where my function was returning undifined within another function (player.js)</td>
+<td> To solve this I used Promises</td>
+</tr>
 </table>
