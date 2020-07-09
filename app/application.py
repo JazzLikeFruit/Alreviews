@@ -113,6 +113,7 @@ def profile():
 
 @app.route("/get_song", methods=["POST"])
 def get_song():
+    print(getAccessToken())
     song = session['spotify'].track(request.form.get("songid"))
     object = jsonify({"name": song["name"], "uri": song["uri"], "artist": song["artists"]
                       [0]["name"], "image": song["album"]["images"][2]["url"]})

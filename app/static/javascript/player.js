@@ -1,3 +1,5 @@
+var token, device
+
 function gettoken() {
 	return new Promise((resolve) => {
 		const request = new XMLHttpRequest()
@@ -7,7 +9,7 @@ function gettoken() {
 
 		request.onload = () => {
 			var data = JSON.parse(request.responseText)
-			document.querySelector("#token").innerHTML = data["token"][0]
+			token = data["token"]
 			resolve()
 		}
 	})
@@ -15,8 +17,6 @@ function gettoken() {
 
 gettoken().then(
 	(window.onSpotifyWebPlaybackSDKReady = () => {
-		const token = document.querySelector("#token").innerHTML
-
 		var player = new Spotify.Player({
 			name: "Alreviews player",
 			getOAuthToken: (cb) => {
@@ -31,6 +31,7 @@ gettoken().then(
 		})
 
 		document.querySelector("#play_image").addEventListener("click", () => {
+			play(token, a.id, device_id)
 			player.resume().then(() => {
 				console.log("Resumed!")
 			})
@@ -66,9 +67,12 @@ gettoken().then(
 			})
 		})
 
+		console.log(document.querySelector("#token").innerHTML)
+
 		player.addListener("ready", ({ device_id }) => {
 			console.log("Ready with Device ID", device_id)
-			play(data.device_id)
+
+
 		})
 
 		// Not Ready
@@ -82,24 +86,24 @@ gettoken().then(
 				console.log("The Web Playback SDK successfully connected to Spotify!")
 			}
 		})
+
+
+
 	})
 )
 
-// Play a specified track on the Web Playback SDK's device ID
-function play(device_id) {
-	$.ajax({
-		url: "https://api.spotify.com/v1/me/player/play?device_id=" + device_id,
-		type: "PUT",
-		data: '{"uris": ["spotify:track:5ya2gsaIhTkAuWYEMB0nw5"]}',
-		beforeSend: function (xhr) {
-			xhr.setRequestHeader("Authorization", "Bearer " + _token)
-		},
-		success: function (data) {
-			console.log(data)
-		},
-	})
+function play(token, track, device_id) {
+	let song = { uris: [track] }
+
+	const url =
+		"https://api.spotify.com/v1/me/player/play?device_id=" + device_id
+
+	// The parameters we are gonna pass to the fetch function
+	let response = fetch(url, {
+		method: 'PUT',
+		headers: { 'Content-Type': 'application/json', Authorization: token[1]["Authorization"] },
+		body: JSON.stringify(song)
+	});
 }
 
-var request = new XMLHttpRequest()
-url = "https://api.spotify.com/v1/me/player/play?device_id=" + device_id
-request.open("POST", url)
+
