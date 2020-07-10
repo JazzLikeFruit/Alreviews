@@ -31,7 +31,6 @@
 			type="text/css"
 			href="{{ url_for('static', filename='css/style.css') }}"
 		/>
-
 		{% if request.path =="/result"%}
 		<script src="https://sdk.scdn.co/spotify-player.js"></script>
 		<script src="{{ url_for('static', filename='javascript/player.js') }}"></script>
@@ -62,15 +61,20 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarCollapse">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active">
+						<li class="nav-item">
 							<a class="nav-link" href="{{ url_for('about') }}"
 								><span class="navcol">About</span></a
 							>
 						</li>
 						{% if request.path !="/"%}
-						<li class="nav-item active">
+						<li class="nav-item">
 							<a class="nav-link" href="{{ url_for('profile') }}"
 								><span class="navcol">Profile</span></a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('logout') }}"
+								><span class="navcol">Logout</span></a
 							>
 						</li>
 						{% endif %}
@@ -91,7 +95,7 @@
 		<footer id="web-player" class="py-4 text-black-50">
 			<div id="player" class="container-fluid">
 				<div id="player_name"></div>
-				<div id="token"></div>
+				<div id="uri"></div>
 				<div class="row">
 					<div class="col-2">
 						<img id="songimage" src="" alt="songimage" />
@@ -114,6 +118,14 @@
 							src="{{ url_for('static',
 						filename='pictures/pause_button.png') }}"
 							alt="pause"
+						/>
+					</div>
+					<div id="resume" class="col-2">
+						<img
+							id="resume_image"
+							src="{{ url_for('static',
+						filename='pictures/resume.png') }}"
+							alt="resume"
 						/>
 					</div>
 					<div id="spotify" class="col-2">

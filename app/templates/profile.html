@@ -1,6 +1,47 @@
 {% extends "default.html" %}{% block title %}Profile{% endblock %}{% block
 content %}
-<div class="cont">
-	<div class="item item-7"></div>
+<div id="result_page" class="container">
+	{% if reviews%}
+	<div class="resultlist">
+		<div class="row">
+			<div id="titlediv" class="col-12">
+				<h1>Reviewed</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<ul class="list">
+					{% for review in reviews%}
+					<li class="resultlitem">
+						<div class="listcontent">
+							<div class="albumimage">
+								<img src="{{review.image}}" alt="{{result['name']}}" />
+							</div>
+							<div class="listtext">
+								<div class="albumname">{{review.name}}</div>
+								<div class="artistname">
+									{{review.artist}}
+								</div>
+							</div>
+							<div id="al_rating">
+								{{result.rating}}
+							</div>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+
+				<p></p>
+			</div>
+		</div>
+	</div>
+	{% else %}
+	<div class="resultlist">
+		<div class="row">
+			<div id="titlediv" class="col-12">
+				<h1>No reviewed albums</h1>
+			</div>
+		</div>
+	</div>
+	{% endif %} {% endblock %}
 </div>
-{% endblock %}

@@ -52,7 +52,7 @@ content %}
 		<div class="row">
 			<div id="track_list" class="col-12"><p>Track list</p></div>
 		</div>
-		<form action="">
+		<form method="POST" action="{{ url_for('review') }}">
 			<div class="row">
 				<div class="col-12">
 					<ul id="albumtracks" class="list"></ul>

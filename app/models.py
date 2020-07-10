@@ -10,9 +10,9 @@ class User(db.Model):
     """
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String, unique=True, nullable=False)
     display_name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
-    country = db.Column(db.String, nullable=False)
     reviews = db.relationship("Album",
                               secondary="review", lazy="dynamic")
 
@@ -36,8 +36,7 @@ class Album(db.Model):
     """
     __tablename__ = 'album'
     id = db.Column(db.Integer, primary_key=True)
+    album_code = db.Column(db.String, unique=True, nullable=False)
     artists = db.Column(db.String, nullable=False)
     name = db.Column(db.String, nullable=False)
-    genres = db.Column(db.String, nullable=False)
-    album_type = db.Column(db.String, nullable=False)
     image = db.Column(db.String, nullable=False)

@@ -9,7 +9,7 @@ from .spotify.startup import *
 import spotipy
 
 
-# Configure Flask appz
+# Configure Flask apps
 app = Flask(__name__)
 
 # Configure database
@@ -51,69 +51,84 @@ def login():
 @app.route("/callback/")
 def callback():
     getUserToken(request.args['code'])
+    session['spotify'] = spotipy.Spotify(getAccessToken())
+    returned_user = session['spotify'].current_user()
+    user = User.query.filter(User.username == returned_user["id"]).first()
+
+    if not user:
+        userin = User(username=returned_user["id"], display_name=returned_user["display_name"],
+                      email=returned_user["email"])
+        db.session.add(userin)
+        db.session.commit()
+
+        user = User.query.filter(User.username == returned_user["id"]).first()
+
+    # Log in user
+    session["user"] = user
+
     return redirect(url_for("search"))
 
 
 @app.route("/search")
 def search():
-    return render_template("search.html")
+    if "user" in session:
+        print(session["user"])
+        return render_template("search.html")
+    return redirect(url_for("index"))
 
 
 @app.route("/result", methods=["GET", "POST"])
 def result():
+    if "user" in session:
+        results = session['spotify'].search(q=request.form.get(
+            "userinput"), type="album", market="NL")
 
-    session['spotify'] = spotipy.Spotify(getAccessToken())
-    results = session['spotify'].search(q=request.form.get(
-        "userinput"), type="album", market="NL")
+        result_list = []
+        for album in results["albums"]["items"]:
+            albumdict = {}
+            artistlist = []
 
-    result_list = []
-    for album in results["albums"]["items"]:
-        albumdict = {}
-        artistlist = []
+            albumdict["artist"] = get_artists(album).replace("'", "")
+            albumdict["name"] = album["name"]
+            albumdict["id"] = album["id"]
+            albumdict["image"] = album["images"][2]["url"]
+            result_list.append(albumdict)
 
-        albumdict["artist"] = get_artists(album)
-        albumdict["name"] = album["name"]
-        albumdict["id"] = album["id"]
-        albumdict["image"] = album["images"][2]["url"]
-        result_list.append(albumdict)
-
-    return render_template("result.html", result_list=result_list)
+        return render_template("result.html", result_list=result_list)
+    return redirect(url_for("index"))
 
 
 @app.route("/album", methods=["POST"])
 def album():
+    if "user" in session:
+        tracks = []
+        artistlist = []
+        albumdict = {}
 
-    tracks = []
-    artistlist = []
-    albumdict = {}
+        album = session['spotify'].album(request.form.get("itemid"))
+        albumdict["name"] = album["name"]
+        albumdict["date"] = album["release_date"]
+        albumdict["total_tracks"] = album["total_tracks"]
+        albumdict["images"] = album["images"][1]["url"]
+        albumdict["id"] = album["id"]
 
-    album = session['spotify'].album(request.form.get("itemid"))
-    albumdict["name"] = album["name"]
-    albumdict["date"] = album["release_date"]
-    albumdict["total_tracks"] = album["total_tracks"]
-    albumdict["images"] = album["images"][1]["url"]
-    albumdict["id"] = album["id"]
+        albumdict["artist"] = get_artists(album).replace("'", "")
 
-    albumdict["artist"] = get_artists(album)
-
-    for track in album["tracks"]["items"]:
-        trackdict = {}
-        trackdict["name"] = track["name"]
-        trackdict["id"] = track["id"]
-        trackdict["uri"] = track["uri"]
-        tracks.append(trackdict)
-    albumdict["tracks"] = tracks
-    return albumdict
-
-
-@app.route("/profile")
-def profile():
-    return render_template("profile.html")
+        for track in album["tracks"]["items"]:
+            trackdict = {}
+            trackdict["name"] = track["name"]
+            trackdict["id"] = track["id"]
+            trackdict["uri"] = track["uri"]
+            tracks.append(trackdict)
+        albumdict["tracks"] = tracks
+        session["album"] = albumdict
+        return albumdict
+    return redirect(url_for("index"))
 
 
 @app.route("/get_song", methods=["POST"])
 def get_song():
-    print(getAccessToken())
+
     song = session['spotify'].track(request.form.get("songid"))
     object = jsonify({"name": song["name"], "uri": song["uri"], "artist": song["artists"]
                       [0]["name"], "image": song["album"]["images"][2]["url"]})
@@ -130,8 +145,44 @@ def about():
     return render_template("about.html")
 
 
-@app.route("/play_song")
-def play_song():
-    session['spotify'].start_play(device_id=request.form.get(
-        "player"), context_uri=request.form.get("uri"))
-    return jsonify({"success": True})
+@app.route("/review", methods=["POST"])
+def review():
+
+    if not Album.query.filter(Album.album_code == session["album"]["id"]).first():
+        add_album = Album(album_code=session["album"]["id"], artists=session["album"]["artist"],
+                          name=session["album"]["name"], image=session["album"]["images"])
+        db.session.add(add_album)
+        db.session.commit()
+
+    album = Album.query.filter(
+        Album.album_code == session["album"]["id"]).first()
+
+    if not Review.query.filter(and_(Review.album_id == album.id, Review.user_id == session['user'].id)).first():
+
+        list = request.form.getlist("albumtracks")
+        avg = sum([int(cijfer) for cijfer in list]) / len(list)
+
+        review = Review(user_id=session['user'].id,
+                        album_id=album.id, rating=avg)
+        db.session.add(review)
+        db.session.commit()
+    return redirect(url_for("profile"))
+
+
+@app.route("/profile")
+def profile():
+    if "user" in session:
+        reviews = Review.query.filter(
+            Review.user_id == session['user'].id).all()
+
+        return render_template("profile.html", reviews=reviews)
+    return redirect(url_for("index"))
+
+# Log out user
+@app.route("/logout")
+def logout():
+
+    session.pop("user", None)
+
+    # spotify logout page
+    return redirect("https://www.spotify.com/logout/")

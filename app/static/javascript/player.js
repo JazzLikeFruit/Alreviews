@@ -23,18 +23,26 @@ gettoken().then(
 				cb(token)
 			},
 		})
+		document.querySelector("#resume_image").addEventListener("click", () => {
+			player.resume().then(() => {
+				document.querySelector("#pause").style.display = "inline"
+				document.querySelector("#resume").style.display = "none"
+				console.log("Resumed!")
+			})
+		})
 
 		document.querySelector("#pause_image").addEventListener("click", () => {
 			player.pause().then(() => {
 				console.log("Paused!")
+				document.querySelector("#resume").style.display = "inline"
+				document.querySelector("#pause").style.display = "none"
 			})
 		})
 
 		document.querySelector("#play_image").addEventListener("click", () => {
-			play(token, a.id, device_id)
-			player.resume().then(() => {
-				console.log("Resumed!")
-			})
+			play(token, document.querySelector("#uri").innerHTML, device)
+			document.querySelector("#play").style.display = "none"
+			document.querySelector("#pause").style.display = "inline"
 		})
 
 		// Error handling
@@ -67,12 +75,9 @@ gettoken().then(
 			})
 		})
 
-		console.log(document.querySelector("#token").innerHTML)
-
 		player.addListener("ready", ({ device_id }) => {
 			console.log("Ready with Device ID", device_id)
-
-
+			device = device_id
 		})
 
 		// Not Ready
@@ -86,9 +91,6 @@ gettoken().then(
 				console.log("The Web Playback SDK successfully connected to Spotify!")
 			}
 		})
-
-
-
 	})
 )
 
@@ -99,11 +101,12 @@ function play(token, track, device_id) {
 		"https://api.spotify.com/v1/me/player/play?device_id=" + device_id
 
 	// The parameters we are gonna pass to the fetch function
-	let response = fetch(url, {
-		method: 'PUT',
-		headers: { 'Content-Type': 'application/json', Authorization: token[1]["Authorization"] },
-		body: JSON.stringify(song)
-	});
+	fetch(url, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: token[1]["Authorization"],
+		},
+		body: JSON.stringify(song),
+	})
 }
-
-

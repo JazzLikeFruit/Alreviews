@@ -210,15 +210,18 @@
 }
 
 #play_image,
+#resume_image,
 #pause_image,
 #spotify_image {
 	height: 60px;
 	width: 60px;
 }
 
-#token,
-#player_name,
+#uri,
 #pause,
+#resume,
+#player_name,
+#albumid,
 #albumrating {
 	display: none;
 }

@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					select.className = "song_rating"
 					select.id = data["tracks"][i]["id"]
 					select.style = "float: right;"
+					select.name = "albumtracks"
 
 					var option = document.createElement("option")
 					select.appendChild(option)
@@ -65,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 								data["name"]
 							document.querySelector("#player_songartist").innerHTML =
 								data["artist"]
+							document.querySelector("#uri").innerHTML = data["uri"]
 						}
 
 						const data = new FormData()
@@ -72,6 +74,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 						document.querySelector("#sticky-footer").style.display = "none"
 						document.querySelector("#web-player").style.display = "inline"
+
+						document.querySelector("#play").style.display = "inline"
+						document.querySelector("#pause").style.display = "none"
 
 						// Send request
 						request.send(data)
