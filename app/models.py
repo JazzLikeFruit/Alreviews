@@ -32,7 +32,6 @@ class Review(db.Model):
 class Album(db.Model):
     """
     Model for all used albums in the app 
-
     """
     __tablename__ = 'album'
     id = db.Column(db.Integer, primary_key=True)

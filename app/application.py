@@ -72,7 +72,6 @@ def callback():
 @app.route("/search")
 def search():
     if "user" in session:
-        print(session["user"])
         return render_template("search.html")
     return redirect(url_for("index"))
 
@@ -89,7 +88,9 @@ def result():
             artistlist = []
 
             albumdict["artist"] = get_artists(album).replace("'", "")
-            albumdict["name"] = album["name"]
+            albuml = (album["name"][:60].strip() +
+                      '...') if len(album["name"]) > 60 else album["name"]
+            albumdict["name"] = albuml
             albumdict["id"] = album["id"]
             albumdict["image"] = album["images"][2]["url"]
             result_list.append(albumdict)
@@ -160,7 +161,8 @@ def review():
     if not Review.query.filter(and_(Review.album_id == album.id, Review.user_id == session['user'].id)).first():
 
         list = request.form.getlist("albumtracks")
-        avg = sum([int(cijfer) for cijfer in list]) / len(list)
+        number = float(10/(len(list)*5))
+        avg = float(number * sum([int(cijfer) for cijfer in list]))
 
         review = Review(user_id=session['user'].id,
                         album_id=album.id, rating=avg)
@@ -172,10 +174,11 @@ def review():
 @app.route("/profile")
 def profile():
     if "user" in session:
-        reviews = Review.query.filter(
-            Review.user_id == session['user'].id).all()
+        reviewed_albums = db.session.query(Review, Album).filter(
+            and_(Review.album_id == Album.id, Review.user_id == session['user'].id)).all()
+        print(reviewed_albums)
 
-        return render_template("profile.html", reviews=reviews)
+        return render_template("profile.html", reviews=reviewed_albums)
     return redirect(url_for("index"))
 
 # Log out user

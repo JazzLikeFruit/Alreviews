@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 						document.querySelector("#play").style.display = "inline"
 						document.querySelector("#pause").style.display = "none"
+						document.querySelector("#resume").style.display = "none"
 
 						// Send request
 						request.send(data)

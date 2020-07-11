@@ -5,26 +5,30 @@ content %}
 	<div class="resultlist">
 		<div class="row">
 			<div id="titlediv" class="col-12">
-				<h1>Reviewed</h1>
+				<h1>Reviewed Albums</h1>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col">
 				<ul class="list">
-					{% for review in reviews%}
+					{% for review, album in reviews%}
 					<li class="resultlitem">
 						<div class="listcontent">
 							<div class="albumimage">
-								<img src="{{review.image}}" alt="{{result['name']}}" />
+								<img
+									id="albunmimage1"
+									src="{{album.image}}"
+									alt="{{album['name']}}"
+								/>
 							</div>
 							<div class="listtext">
-								<div class="albumname">{{review.name}}</div>
-								<div class="artistname">
-									{{review.artist}}
+								<div class="albumname">{{album.name}}</div>
+								<div class="artistname1">
+									{{album.artists}}
 								</div>
 							</div>
 							<div id="al_rating">
-								{{result.rating}}
+								{{'%0.1f'|format(review.rating)	}}
 							</div>
 						</div>
 					</li>
