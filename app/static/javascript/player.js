@@ -1,5 +1,6 @@
 var token, device
 
+// Get token from route
 function gettoken() {
 	return new Promise((resolve) => {
 		const request = new XMLHttpRequest()
@@ -15,14 +16,19 @@ function gettoken() {
 	})
 }
 
+// After getting token it runs the spotify SDK
 gettoken().then(
+	// Run spotifysdk library
 	(window.onSpotifyWebPlaybackSDKReady = () => {
+		// Create new player and add token
 		var player = new Spotify.Player({
 			name: "Alreviews player",
 			getOAuthToken: (cb) => {
 				cb(token)
 			},
 		})
+
+		// Resume song whe resume button is pressed
 		document.querySelector("#resume_image").addEventListener("click", () => {
 			player.resume().then(() => {
 				document.querySelector("#pause").style.display = "inline"
@@ -31,6 +37,7 @@ gettoken().then(
 			})
 		})
 
+		// Pause track when pause button is pressed
 		document.querySelector("#pause_image").addEventListener("click", () => {
 			player.pause().then(() => {
 				console.log("Paused!")
@@ -39,6 +46,7 @@ gettoken().then(
 			})
 		})
 
+		// Play song when play button is pressed
 		document.querySelector("#play_image").addEventListener("click", () => {
 			play(token, document.querySelector("#uri").innerHTML, device)
 			document.querySelector("#play").style.display = "none"
@@ -75,6 +83,7 @@ gettoken().then(
 			})
 		})
 
+		// Check if player is working
 		player.addListener("ready", ({ device_id }) => {
 			console.log("Ready with Device ID", device_id)
 			device = device_id
@@ -94,13 +103,14 @@ gettoken().then(
 	})
 )
 
+// Function that plays the ong
 function play(token, track, device_id) {
 	let song = { uris: [track] }
 
 	const url =
 		"https://api.spotify.com/v1/me/player/play?device_id=" + device_id
 
-	// The parameters we are gonna pass to the fetch function
+	// play song using the new sdk player
 	fetch(url, {
 		method: "PUT",
 		headers: {

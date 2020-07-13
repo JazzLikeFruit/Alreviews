@@ -1,3 +1,15 @@
+"""
+
+models.py
+Handels database models. 
+
+Minor programmeren 
+Web app studio 
+Shewen Davelaar
+
+"""
+
+
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
