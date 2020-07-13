@@ -88,8 +88,8 @@ def result():
             artistlist = []
 
             albumdict["artist"] = get_artists(album).replace("'", "")
-            albuml = (album["name"][:60].strip() +
-                      '...') if len(album["name"]) > 60 else album["name"]
+            albuml = (album["name"][:40].strip() +
+                      '...') if len(album["name"]) > 40 else album["name"]
             albumdict["name"] = albuml
             albumdict["id"] = album["id"]
             albumdict["image"] = album["images"][2]["url"]

@@ -35,8 +35,8 @@ content %}
 		<div class="row">
 			<div class="col-3" id="albumimage"></div>
 			<div class="col-9">
-				<p id="albumtitle">Album:</p>
-				<p>Artist: <span id="albumartist"></span></p>
+				<p id="albumtitle"></p>
+				<p id="albumartist"></p>
 			</div>
 		</div>
 		<div id="rate_text" class="row">
@@ -56,10 +56,14 @@ content %}
 			<div class="row">
 				<div class="col-12">
 					<ul id="albumtracks" class="list"></ul>
+					<button
+						id="ratealbum"
+						type="submit"
+						class="btn btn-secondary btn-lg"
+					>
+						Rate album
+					</button>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col"><input type="submit" value="Rate Album" /></div>
 			</div>
 		</form>
 	</div>

@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					select.id = data["tracks"][i]["id"]
 					select.style = "float: right;"
 					select.name = "albumtracks"
+					select.setAttribute("required", "")
 
 					var option = document.createElement("option")
 					select.appendChild(option)

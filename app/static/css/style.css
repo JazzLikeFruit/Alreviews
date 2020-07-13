@@ -11,8 +11,8 @@
 #web-player {
 	position: fixed;
 	bottom: 0.3cm;
-	left: 15%;
-	right: 15%;
+	left: 20%;
+	right: 20%;
 	height: 2.5cm;
 	background-color: #5e5c5a;
 	display: none;
@@ -21,7 +21,7 @@
 }
 
 * {
-	font-family: B612;
+	font-family: Roboto, Arial, sans-serif;
 	overflow-x: hidden;
 }
 
@@ -47,6 +47,10 @@
 	padding-top: 2cm;
 	padding-bottom: 1cm; /* Footer height */
 }
+#albumtitle {
+	font-weight: bolder;
+	font-size: 25px;
+}
 
 #content {
 	position: relative;
@@ -58,7 +62,7 @@
 }
 .cont {
 	display: grid;
-	grid-template-columns: 20% 22% 28% 30%;
+	grid-template-columns: 20% 25% 33% 25%;
 	grid-template-rows: 15% 20% 25% 15% 15%;
 	grid-gap: 0cm;
 	width: 100vw;
@@ -105,7 +109,7 @@
 .list {
 	list-style-type: none;
 	padding: 0;
-	margin-top: 3cm;
+	margin-top: 1.5cm;
 	margin-bottom: 2.5cm;
 	vertical-align: center;
 }
@@ -129,7 +133,6 @@
 	color: black;
 	display: block;
 	position: relative;
-
 	width: 80%;
 	margin: auto;
 }
@@ -148,6 +151,7 @@
 	left: 5%;
 }
 #al_rating {
+	top: 48%;
 	position: absolute;
 	right: 5%;
 }
@@ -163,19 +167,20 @@
 }
 
 .albumname {
-	top: 50%;
+	top: 48%;
 	position: absolute;
 	left: 15%;
 	text-align: left;
 }
 
 .artistname {
-	top: 50%;
+	top: 48%;
 	position: absolute;
 	text-align: right;
 	right: 8%;
 }
 .artistname1 {
+	top: 48%;
 	position: absolute;
 	text-align: right;
 	right: 15%;
@@ -198,6 +203,7 @@
 	margin-top: auto;
 	width: 70%;
 	left: 0%;
+	margin-bottom: 1cm;
 }
 
 #navbar_search {
@@ -212,10 +218,6 @@
 
 #rate_text {
 	margin-top: 1cm;
-}
-
-#result_page {
-	background-color: #f0f4f9;
 }
 
 #track_list {

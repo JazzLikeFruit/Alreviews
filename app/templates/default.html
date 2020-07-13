@@ -51,7 +51,7 @@
 			style="background-color: #ffffff;"
 		>
 			<div class="container-fluid">
-				<a class="navbar-brand" href="{{ url_for('index') }}">
+				<a class="navbar-brand" href="{{ url_for('search') }}">
 					<h3 id="logo">Alreviews</h3>
 				</a>
 				<button
@@ -88,6 +88,7 @@
 						class="form-inline my-2 my-lg-0 ml-auto"
 					>
 						<input
+							autocomplete="off"
 							class="form-control mr-sm-2 ml-auto"
 							type="text"
 							placeholder="Search for album"
@@ -109,7 +110,7 @@
 		{% block footer %}
 		<footer id="sticky-footer" class="py-4 text-black-50">
 			<div class="container text-center">
-				<small>Made by Shewen Davelaar</small>
+				<small>Made by Jazzlikefruit</small>
 			</div>
 		</footer>
 

@@ -5,15 +5,16 @@
 		<form class="form-inline" method="POST" action="{{ url_for('result') }}">
 			<div class="form-group mx-sm-3 mb-2">
 				<input
+					autocomplete="off"
 					name="userinput"
-					class="form-control"
 					type="text"
+					class="form-control"
+					id="exampleFormControlInput1"
 					placeholder="Search for album"
-					required
 				/>
 			</div>
 			<button type="submit" class="btn btn-primary mb-2">
-				Search for album
+				Search
 			</button>
 		</form>
 	</div>
