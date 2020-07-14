@@ -1,6 +1,18 @@
-{% extends "default.html" %}{% block title %}Profile{% endblock %}{% block
-content %}
+{% extends "default.html" %}{% block title %}Profile{% endblock %} {% block
+javascript%}
+<script>
+	document.querySelectorAll(".resultlitem").forEach((li) => {
+		li.addEventListener("click", () => {
+			document.querySelector("#share").display = "inline"
+		})
+	})
+</script>
+{% endblock %} {% block content %}
 <div id="result_page" class="container">
+	<div
+		id="share"
+		class="elfsight-app-824e1493-7b78-4f90-b3a7-17154145dc92"
+	></div>
 	{% if reviews%}
 	<div class="resultlist">
 		<div class="row">
@@ -22,7 +34,9 @@ content %}
 								/>
 							</div>
 							<div class="listtext">
-								<div class="albumname">{{album.name}}</div>
+								<div class="albumname">
+									{{album.name |truncate(30, true)}}
+								</div>
 								<div class="artistname1">
 									{{album.artists}}
 								</div>

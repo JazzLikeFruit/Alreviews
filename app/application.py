@@ -40,10 +40,9 @@ Session(app)
 # Configure migrationsea
 Migrate(app, db)
 
-# Get atrists of an album
-
 
 def get_artists(dict):
+    # Get atrists of an album
     list = []
     for item in dict["artists"]:
         list.append(item['name'])

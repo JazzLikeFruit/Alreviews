@@ -32,6 +32,7 @@
 		></script>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://apps.elfsight.com/p/platform.js" defer></script>
 		<link
 			rel="stylesheet"
 			type="text/css"
@@ -41,7 +42,8 @@
 		<script src="https://sdk.scdn.co/spotify-player.js"></script>
 		<script src="{{ url_for('static', filename='javascript/player.js') }}"></script>
 		<script src="{{ url_for('static', filename='javascript/javajava.js') }}"></script>
-		{% endif %}
+
+		{% endif %} {% block javascript%}{% endblock %}
 		<title>{% block title %}{% endblock %}</title>
 		{% endblock %}
 	</head>

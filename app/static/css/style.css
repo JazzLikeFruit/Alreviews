@@ -8,6 +8,10 @@
   background-color: #5e5c5a;
 }
 
+#ratealbum {
+  float: right;
+}
+
 #web-player {
   position: fixed;
   bottom: 0.3cm;
@@ -26,8 +30,8 @@
 }
 
 #image123 {
-  width: 650px;
-  height: 650px;
+  width: 80%;
+  height: 80%;
   opacity: 0.9;
 }
 
@@ -46,7 +50,7 @@
 #content-wrap {
   height: 100%;
   padding-top: 2cm;
-  padding-bottom: 1cm;
+  padding-bottom: 2.5cm;
   /* Footer height */
 }
 
@@ -66,8 +70,8 @@
 
 .cont {
   display: grid;
-  grid-template-columns: 20% 25% 33% 25%;
-  grid-template-rows: 15% 20% 25% 15% 15%;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto 20% auto auto auto;
   grid-gap: 0cm;
   width: 100vw;
   height: 100vh;
@@ -77,18 +81,19 @@
   grid-column: 3/5;
   grid-row: 2/5;
   justify-self: center;
+  justify-content: center;
   overflow: hidden;
   border-radius: 8px;
 }
 
 .item-2 {
-  grid-column: 0.3333333333;
+  grid-column: 1/3;
   grid-row: 4;
   justify-self: center;
 }
 
 .item-3 {
-  grid-column: 0.3333333333;
+  grid-column: 1/3;
   grid-row: 2;
   font-size: 35px;
   font-weight: bold;
@@ -96,7 +101,7 @@
 }
 
 .item-4 {
-  grid-column: 0.3333333333;
+  grid-column: 1/3;
   grid-row: 3;
   font-size: 20px;
   font-weight: Thin;
@@ -105,6 +110,12 @@
 .item-5 {
   grid-column: 2/4;
   grid-row: 3;
+  justify-self: center;
+}
+
+.item-7 {
+  grid-column: 2/4;
+  grid-row: 2;
   justify-self: center;
 }
 
@@ -190,7 +201,7 @@
 .albumname {
   top: 48%;
   position: absolute;
-  left: 15%;
+  left: 18%;
   text-align: left;
 }
 
@@ -213,7 +224,7 @@
 }
 
 #titlediv {
-  left: 35%;
+  text-align: center;
 }
 
 .listtext {
@@ -221,9 +232,9 @@
 }
 
 #albumtracks {
+  margin: auto;
   margin-top: auto;
   width: 70%;
-  left: 0%;
   margin-bottom: 1cm;
 }
 
@@ -265,6 +276,7 @@
 #resume,
 #player_name,
 #albumid,
+#share,
 #albumrating {
   display: none;
 }
