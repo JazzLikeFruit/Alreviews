@@ -1,30 +1,32 @@
 {% extends "default.html" %} {% block title %}Welcome{% endblock %} {% block
 content %}
-<div class="cont">
-	<div class="item item-1">
-		<img
-			id="image123"
-			src="{{ url_for('static', filename='pictures/hompageimage.jpeg') }}"
-			alt="albums"
-		/>
-	</div>
-	<div class="item item-2">
-		<button id="login_buttons" type="button" class="btn btn-primary btn-lg">
-			<a class="navbar-brand" href="{{ url_for('login') }}"
-				>Connect to spotify</a
-			>
-		</button>
-	</div>
-	<div class="item item-3">
-		Listen, rate albums and share them with your friends!
-	</div>
-	<div class="item item-4">
-		This flask application implements a rating system for albums. The
-		application uses the spotipy library and Spotify api to gather information
-		about albums and users are able to rate each songs and thus create a rating
-		for an album. Users can also listen to every song in the album while doing
-		this. To be albe to use this feature the user needs a spotify premium
-		subscription.
+<div class="container-fluid">
+	<div class="cont">
+		<div class="item item-1">
+			<img
+				id="image123"
+				src="{{ url_for('static', filename='pictures/hompageimage.jpeg') }}"
+				alt="albums"
+			/>
+		</div>
+		<div class="item item-2">
+			<button id="login_buttons" type="button" class="btn btn-primary btn-lg">
+				<a class="navbar-brand" href="{{ url_for('login') }}"
+					>Connect to spotify</a
+				>
+			</button>
+		</div>
+		<div class="item item-3">
+			Listen, rate albums and share them with your friends!
+		</div>
+		<div class="item item-4">
+			This flask application implements a rating system for albums. The
+			application uses the spotipy library and Spotify api to gather
+			information about albums and users are able to rate each songs and thus
+			create a rating for an album. Users can also listen to every song in the
+			album while doing this. To be albe to use this feature the user needs a
+			spotify premium subscription.
+		</div>
 	</div>
 </div>
 

@@ -15,12 +15,13 @@
 #web-player {
   position: fixed;
   bottom: 0.3cm;
-  left: 20%;
-  right: 20%;
-  height: 2.5cm;
+  left: 25%;
+  right: 25%;
+  height: 3cm;
   background-color: #5e5c5a;
   display: none;
   overflow: hidden;
+  padding: 0;
   border-radius: 5px;
 }
 
@@ -246,6 +247,7 @@
   top: auto;
   height: 2.5cm;
   color: white;
+  bottom: 0.3cm;
 }
 
 #songimage {
