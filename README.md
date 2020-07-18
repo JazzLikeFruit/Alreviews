@@ -1,8 +1,12 @@
 # Alreviews
 
-This  flask application implements a rating system for albums. The application uses the spotipy library and Spotify api to gather information
-about albums and users are able to rate each songs and thus create a rating for an album. Users can also listen to every song in the album while doing this. To be albe 
-to use this feature the user needs a spotify premium subscription. 
+This flask application implements a rating system for albums. The application uses the spotipy library and Spotify api to gather information
+about albums and users are able to rate each songs and thus create a rating for an album. Users can also listen to every song in the album while doing this. To be albe
+to use this feature the user needs a spotify premium subscription.
+
+## Screencast
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NejknOsAoTA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Problem statement
 
