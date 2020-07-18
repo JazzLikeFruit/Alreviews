@@ -6,7 +6,7 @@ to use this feature the user needs a spotify premium subscription.
 
 ## Screencast
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/NejknOsAoTA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Screencast](https://img.youtube.com/vi/NejknOsAoTA/0.jpg)](https://www.youtube.com/watch?v=NejknOsAoTA)
 
 ## Problem statement
 
@@ -18,7 +18,7 @@ With the app I will be able to look up a sertain album by an artist, listen to t
 
 ## Data sources
 
-The data sources that will be used to gather the needed information are:
+The data sources that will be used to gather the neesded information are:
 
 - Spotify: Spotify (Swedish media services provider and music streaming service) will be used to gather all the infomation about the albums.
 
